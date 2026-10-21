@@ -1,6 +1,6 @@
 name = "verification_examples"
 version = "0.1.0"
-defaultTargets = ["Verification", "Pythagoras"]
+defaultTargets = ["Verification", "Pythagoras", "Collatz", "CollatzAnalysis"]
 
 [[require]]
 name = "mathlib"
@@ -12,3 +12,9 @@ name = "Verification"
 
 [[lean_lib]]
 name = "Pythagoras"
+
+[[lean_lib]]
+name = "Collatz"
+
+[[lean_lib]]
+name = "CollatzAnalysis"

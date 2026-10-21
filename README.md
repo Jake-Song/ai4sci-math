@@ -24,7 +24,8 @@ lake build
 
 The project pins Lean and Mathlib to matching `v4.24.0` releases. The first run
 downloads the toolchain, dependencies, and precompiled Mathlib modules.
-A successful build verifies all theorems in both Lean files.
+A successful build verifies all theorems in the four Lean files. The Collatz
+files prove partial and conditional results, not the full conjecture.
 
 ## 피타고라스 정리
 
@@ -36,6 +37,32 @@ A successful build verifies all theorems in both Lean files.
 ```sh
 cd lean
 lake build Pythagoras
+```
+
+## 콜라츠 추측 연구
+
+[한국어 연구 기록](collatz/README.md)에서 가설, 단계별 증명, 반례와 남은
+증명 의무를 확인할 수 있습니다. [Lean 코드](lean/Collatz.lean)는 전체 추측과
+하강 명제의 동치, 세 가지 경우의 하강, 두 후보의 반례를 검증합니다.
+**전체 콜라츠 추측을 증명한 것은 아닙니다.**
+
+```sh
+cd lean
+lake build Collatz
+lake env lean Collatz.lean
+```
+
+두 번째 명령은 주요 정리의 공리 의존성도 출력합니다. 미해결 가설을 참으로
+선언하지 않으며, 조건부 정리는 가정을 인자로 명시합니다.
+
+[추가 분석](lean/CollatzAnalysis.lean)은 공통 하강 횟수 상한이 존재하지 않음을
+증명하고, 누적 덧셈 항을 포함한 정확한 하강 조건을 검증합니다.
+한국어 연구 기록의 5–7절에서 기존 전략의 한계와 새 증명을 설명합니다.
+
+```sh
+cd lean
+lake build CollatzAnalysis
+lake env lean CollatzAnalysis.lean
 ```
 
 ## Try an incorrect claim
